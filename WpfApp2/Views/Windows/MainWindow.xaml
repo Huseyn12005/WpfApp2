@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp2.Views.Windows.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2.Views.Windows"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="URL" VerticalContentAlignment="Center" FontSize="25" Margin="50 0 0 0"/>
+
+        <TextBox Grid.Row="0" Text="{Binding Api, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Height="35" Width="550"/>
+        <Button Command="{Binding GetApiCommand}"  x:Name="GetApi" Content="Get" Foreground="White"  VerticalAlignment="Center" Height="50" Width="50" HorizontalAlignment="Right" Margin="0 0 50 0" Background="Black"/>
+
+        <ListView Name="List" Grid.Row="1" Height="225" Width="750" ItemsSource="{Binding comments, Mode=TwoWay}" SelectedItem="{Binding Comment, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+
+        <Button Name="AddButton" Content="Add" VerticalAlignment="Center" Grid.Row="2" Height="50" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Left" Margin="50 0 0 0"/>
+        <Button Name="EditButton" Content="Edit" VerticalAlignment="Center" Grid.Row="2" Height="50" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Left" Margin="250 0 0 0"/>
+        <Button Name="RemoveButton" Content="Remove" Command="{Binding RemoveCommand}" VerticalAlignment="Center" Grid.Row="2" Height="50" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Left" Margin="450 0 0 0"/>
+
+    </Grid>
+</Window>
